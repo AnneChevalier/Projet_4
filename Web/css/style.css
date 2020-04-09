@@ -18,3 +18,81 @@ body {
 	margin: auto;
 	text-align: center;
 }
+
+.form {
+	width: 35%;
+	background-color: rgb(181, 199, 211);
+	margin-right: auto;
+	margin-left: auto;
+	padding: 20px;
+	border: 1px solid rgb(101, 142, 198);
+	border-radius: 5%;
+}
+
+.btn {
+	background-color: rgb(101, 142, 198);
+	border: 1px solid rgb(101, 142, 198);
+}
+
+.sidebar-sticky {
+	height: 80%;
+	z-index: 100;
+}
+
+#createbook {
+	border: 3px solid rgb(101, 142, 198);
+	border-radius: 5%;
+	width: 95px;
+	height: 150px;
+	text-align: center;
+}
+
+.fa-plus {
+	color: rgb(181, 199, 211);
+	font-size: 2em;
+	padding-top: 30%;
+}
+
+/* mise en page de l'éditeur de livre */
+
+#formAddBook {
+	padding-top: 50px;
+}
+
+#coverImg {
+	height: 200px;
+	width: 100%;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+#cover {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	display: block;
+}
+
+#resume {
+	height: 200px;
+}
+
+#booklist {
+	display: flex;
+	justify-content: space-around;
+}
+
+.bookcover {
+	height: 150px;
+	width: 95px;
+}
+
+.bookdetailsbtn {
+	margin-left: 10px;
+	color: rgb(181, 199, 211);
+	font-weight: bold;
+}
+
+.jfPortrait {
+	width: 100%;
+}

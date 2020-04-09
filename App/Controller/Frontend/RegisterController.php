@@ -19,7 +19,6 @@ class RegisterController extends Controller {
 	
 			$errors = array();
 
-			/*$db = App::getDatabase();*/
 			$db = Manager::getDatabase();
 
 			$validator = new Validator($_POST);

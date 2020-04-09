@@ -1,16 +1,20 @@
-<div class="container">
+<div class="loginForm">
 
-	<form action="./backindex.php?controller=login&action=login" method="post">
+	<form class="form" action="./backindex.php?controller=login&action=login" method="post">
 
-		<h1>Jean Forteroche</h1>
+		<div class="form-group title">
 
-		<p>Connexion à l'administration</p>
+			<h1>Jean Forteroche</h1>
+
+			<p>Connexion à l'administration</p>
+
+		</div>
 
 		<div class="form-group">
 					
 			<label for="user_name">Nom d'utilisateur :</label>
 
-			<input type="text" name="user_name" id="user_name" />
+			<input class="form-control" type="text" name="user_name" id="user_name" />
 
 		</div>
 
@@ -18,7 +22,7 @@
 					
 			<label for="mdp">Mot de passe :</label>
 
-			<input type="password" name="password" id="mdp" />
+			<input class="form-control" type="password" name="password" id="mdp" />
 
 		</div>
 

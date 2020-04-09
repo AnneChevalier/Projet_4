@@ -27,7 +27,7 @@ use JFFram\Session;
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<!-- favicon -->
-		<link rel="shortcut icon" href=""/>
+		<link rel="shortcut icon" href="./Web/images/logo_simple_jf_website.png"/>
 		<!-- Fontawesome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
 		<!-- Bootstrap -->
@@ -58,10 +58,29 @@ use JFFram\Session;
                 }
         ?>
 
-		<div class="container">
+        <?php
+        if (Session::getInstance()->read('auth')) {
+        	
+        	require 'header.php';
+        ?>
 
-			<?= $content ?>
+        <div class="container-fluid">
+        	<div class="row">
 
+        <?php
+
+        		require 'aside.php';
+        }
+        ?>
+
+        		<div class="col-md-2"></div>
+				<div class="container col-md-10">
+
+					<?= $content ?>
+
+				</div>
+
+			</div>
 		</div>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

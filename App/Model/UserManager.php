@@ -9,10 +9,6 @@ use JFFram\Session;
 class UserManager extends Manager {
 
 
-	public function delete() {
-
-	}
-
 	public function updatePassword($db, $password, $id) {
 
 		$db->query('UPDATE userstest SET password = ?, reset_at = NULL, reset_token = NULL WHERE id = ?', [$password, $id]);

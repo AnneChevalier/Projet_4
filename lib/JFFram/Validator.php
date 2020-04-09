@@ -34,6 +34,18 @@ class Validator {
 
 	}
 
+	public function isImage($field, $error_message) {
+
+		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
+		$extension = strrchr($_FILES['cover']['name'], '.');
+		
+		if(!in_array($extension, $extensions)) {
+
+			$this->errors[$field] = $error_message;
+
+		}
+	}
+
 	public function isUnique($field, $db, $table, $error_message) {
 
 		$record = $db->query("SELECT id FROM $table WHERE $field = ?", [$this->getField($field)])->fetch();
@@ -77,4 +89,5 @@ class Validator {
 		return $this->errors;
 
 	}
+
 }
