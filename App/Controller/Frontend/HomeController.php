@@ -3,19 +3,23 @@
 /*namespace Controller\Frontend;*/
 
 require './App/Model/BookManager.php';
+require './App/Model/ChapterManager.php';
 
 use JFFram\Controller;
 use JFFram\Manager;
 use Model\BookManager;
+use Model\ChapterManager;
 
 class HomeController extends Controller {
 
 	static function lastBookDetails() {
 
 		$db = Manager::getDatabase();
-		$manager = new BookManager();
-		$lastBookId = $manager->getLastBookId($db);
-		$book = $manager->getBook($db, $lastBookId);
+		$bookManager = new BookManager();
+		$lastBookId = $bookManager->getLastBookId($db);
+		$book = $bookManager->getBook($db, $lastBookId);
+		$chapterManager = new ChapterManager();
+		$chapters = $chapterManager->getPublishedChapters($db, $lastBookId);
 
 		if ($book->id() != 0) {
 			echo '
@@ -36,8 +40,28 @@ class HomeController extends Controller {
 						</button>
 					</div>
 					<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
-						<h5>Chapitre(s) Disponible(s)</h5>
-					</div>
+						<h5>Chapitre(s) Disponible(s)</h5>';
+
+						foreach ($chapters as $chapter) {
+
+						echo '
+						<ol>	
+							<li>
+								<div class="row">
+									<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
+									
+									<form method="post" action="./index.php?controller=reading" class="col-md-2">
+										<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+										<button type="submit" class="btn">Lire</button>
+									</form>
+								</div>
+							</li>
+						</ol>';
+						}
+
+					echo 
+
+					'</div>
 				</div>
 			';
 		}
@@ -46,11 +70,14 @@ class HomeController extends Controller {
 	static function booksDetails() {
 
 		$db = Manager::getDatabase();
-		$manager = new BookManager();
-		$lastBookId = $manager->getLastBookId($db);
+		$bookManager = new BookManager();
+		$chapterManager = new ChapterManager();
+		$lastBookId = $bookManager->getLastBookId($db);
 
 		if(!empty($books = BookManager::getBooks($db))) {
 			foreach ($books as $book) {
+
+				$chapters = $chapterManager->getPublishedChapters($db, $book->id());
 
 				if ($book->status() == 'online' && $book->id() != $lastBookId) {
 					
@@ -73,9 +100,28 @@ class HomeController extends Controller {
 							</button>
 						</div>
 						<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
-							<h5>Chapitre(s) Disponible(s)</h5>
-						</div>
-					</div>';
+							<h5>Chapitre(s) Disponible(s)</h5>';
+
+							foreach ($chapters as $chapter) {
+
+							echo '
+							<ol>	
+								<li>
+									<div class="row">
+										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
+										
+										<form method="post" action="./index.php?controller=reading" class="col-md-2">
+											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+											<button type="submit" class="btn">Lire</button>
+										</form>
+									</div>
+								</li>
+							</ol>';
+							}
+
+						echo 
+						'	</div>
+						</div>';
 				}
 				
 			 }

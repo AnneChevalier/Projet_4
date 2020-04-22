@@ -3,12 +3,14 @@
 /*namespace Controller\Backend;*/
 
 require './App/Model/BookManager.php';
+require './App/Model/ChapterManager.php';
 
 use JFFram\Controller;
 use JFFram\Manager;
 use JFFram\Str;
 use JFFram\Validator;
 use Model\BookManager;
+use Model\ChapterManager;
 
 class EditController extends Controller {
 
@@ -73,6 +75,8 @@ class EditController extends Controller {
 		if(!empty($books = BookManager::getBooks($db))) {
 			foreach ($books as $book) {
 
+				$chapters = ChapterManager::getAllChapters($db, $book->id());
+
 				echo 
 
 					'<div id="bookdetails' . $book->id() . '" class="collapse row">
@@ -88,7 +92,10 @@ class EditController extends Controller {
 							<h3 class="col-md-6">' . $book->title() .'</h3>
 							<p class="col-md-12">' . $book->resume() .'</p>
 
-							<div class="row"> 
+							<div class="row">
+								<div class="bookdetailsbtn">
+									<button class="btn"><a href="./backindex.php?controller=chapeditor&id=' . $book->id() . '">Nouveau Chapitre</a></button>
+								</div>
 								<form method="post" action="./backindex.php?controller=edit&action=online" class="bookdetailsbtn">
 									<input type="hidden" name="id" value="' . $book->id() . '"/>
 									<button class="btn" type="submit">';
@@ -109,11 +116,44 @@ class EditController extends Controller {
 									<input type="hidden" name="id" value="' . $book->id() . '"/>
 									<button class="btn">Supprimer</button>
 								</form>
-
-								<div class="bookdetailsbtn">
-									<button class="btn"><a href="./backindex.php?controller=chapeditor&id=' . $book->id() . '">Nouveau Chapitre</a></button>
-								</div>
 							</div>
+
+						</div>
+						<div class="row">';
+
+					foreach ($chapters as $chapter) {
+
+						echo '	
+						
+							<div class="col-md-4">' . $chapter->title() . ' crée le ' . $chapter->creationDate() . '</div>
+							<form method="post" action="./backindex.php?controller=display" class="col-md-2">
+								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+								<button type="submit" class="btn">Visualiser</button>
+							</form>
+							<form method="post" action="./backindex.php?controller=chapeditor" class="col-md-2">
+								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+								<button type="submit" class="btn">Modifier</button>
+							</form>
+							<form method="post" action="./backindex.php?controller=chapeditor&action=online" class="col-md-2">
+								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+								<button class="btn" type="submit">';
+
+								if ($chapter->status() == "offline") {
+									echo "Mettre en ligne";
+								} else {
+									echo "Mettre hors ligne";
+								}
+								echo '</button>
+							</form>
+							
+							<form method="post" action="./backindex.php?controller=chapeditor&action=basket" class="col-md-2">
+								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+								<button type="submit" class="btn">Supprimer</button>
+							</form>
+							';
+					}
+
+					echo '
 
 						</div>
 					</div>

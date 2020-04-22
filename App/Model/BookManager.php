@@ -47,6 +47,8 @@ class BookManager extends Manager {
 
 	public function delete($db, $id) {
 
+		$db->query("DELETE FROM chapters WHERE bookId = ?", [$id]);
+
 		$db->query("DELETE FROM books WHERE id = ?", [$id]);
 
 	}
@@ -120,6 +122,22 @@ class BookManager extends Manager {
 	}
 
 	public function deleteAll($db) {
+
+		$req = $db->query("SELECT id FROM books WHERE status = ?", ['basket']);
+
+		$ids = [];
+
+		while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+			
+			$id = $data['id'];
+			array_push($ids, $id);
+
+		}
+
+		foreach ($ids as $id) {
+
+			$db->query("DELETE FROM chapters WHERE bookId = ?", [$id]);
+		}
 
 		$db->query("DELETE FROM books WHERE status = ?", ['basket']);
 	}
