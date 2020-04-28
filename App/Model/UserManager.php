@@ -103,6 +103,12 @@ class UserManager extends Manager {
 		$session->delete('auth');
 
 	}
+
+	public function idExist($db, $id) {
+
+		return $db->query('SELECT id FROM userstest WHERE id = ?', [$id])->fetch();
+		
+	}
 	
 	
 }

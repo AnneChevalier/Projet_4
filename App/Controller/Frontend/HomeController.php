@@ -4,11 +4,13 @@
 
 require './App/Model/BookManager.php';
 require './App/Model/ChapterManager.php';
+require './App/Model/BookmarkManager.php';
 
 use JFFram\Controller;
 use JFFram\Manager;
 use Model\BookManager;
 use Model\ChapterManager;
+use Model\BookmarkManager;
 
 class HomeController extends Controller {
 
@@ -100,12 +102,13 @@ class HomeController extends Controller {
 							</button>
 						</div>
 						<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
-							<h5>Chapitre(s) Disponible(s)</h5>';
+							<h5>Chapitre(s) Disponible(s)</h5>
+							<ol>';
 
 							foreach ($chapters as $chapter) {
 
 							echo '
-							<ol>	
+								
 								<li>
 									<div class="row">
 										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
@@ -116,18 +119,68 @@ class HomeController extends Controller {
 										</form>
 									</div>
 								</li>
-							</ol>';
+							';
 							}
 
-						echo 
-						'	</div>
-						</div>';
+					echo '
+							</ol>
+						</div>
+					</div>';
 				}
 				
 			 }
 
 		}
 
+	}
+
+	static function listBookmarks($userId) {
+
+		$db = Manager::getDatabase();
+
+		$bookmarkManager = new BookmarkManager();
+
+		$bookmarks = $bookmarkManager->getBookmarks($db, $userId);
+
+		if (!empty($bookmarks)) {
+			
+			echo "<p>Reprendre au marque-page</p>
+				<ul>";
+
+			foreach ($bookmarks as $bookmark) {
+
+				$chapterManager = new ChapterManager();
+
+				$chapter = $chapterManager->getChapter($db, $bookmark->chapterId());
+				
+				echo '<div class="row">
+						<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
+						<form method="post" action="./index.php?controller=reading" class="col-md-2">
+								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+								<button type="submit" class="btn">Lire</button>
+						</form>
+						<form method="post" action="./index.php?controller=home&action=deleteBookmark" class="col-md-2">
+								<input type="hidden" name="id" value="' . $bookmark->id() . '"/>
+								<button type="submit" class="btn">Supprimer</button>
+						</form>
+					</div>';
+			}
+
+			echo "</ul>";
+
+		}
+
+	}
+
+	public function deleteBookmark() {
+
+		$bookmarkId = (int) $_POST['id'];
+		$db = Manager::getDatabase();
+		$bookmarkManager = new BookmarkManager();
+		$bookmarkManager->delete($db, $bookmarkId);
+
+		header('Location: ./index.php');
+		
 	}
 	
 

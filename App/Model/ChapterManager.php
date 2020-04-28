@@ -113,4 +113,18 @@ class ChapterManager extends Manager {
 		$db->query("DELETE FROM chapters WHERE id = ?", [$id]);
 
 	}
+
+	public function idExist($db, $id) {
+
+		return $db->query('SELECT id FROM chapters WHERE id = ?', [$id])->fetch();
+		
+	}
+
+	static function getBookId($db, $id) {
+
+		$req = $db->query('SELECT bookId FROM chapters WHERE id = ?', [$id])->fetch();
+
+		return $req->bookId;
+
+	}
 }

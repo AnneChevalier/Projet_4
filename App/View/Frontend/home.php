@@ -17,7 +17,9 @@ use JFFram\Session;
 	<?php if(Session::getInstance()->read('auth')) { ?>
 
 		<div class="resume">
-			<p>Reprendre au marque-page</p>
+
+			<?php HomeController::listBookmarks(Session::getInstance()->getValue("auth")->id) ?>
+
 		</div>
 
 	<?php } ?>
