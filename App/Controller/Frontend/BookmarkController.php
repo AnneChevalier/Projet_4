@@ -46,7 +46,7 @@ class BookmarkController extends Controller {
 
 		}
 
-		header('Location: ./index.php');
+		header('Location: ./index.php?controller=reading&id=' . $chapterId);
 
 	}
 

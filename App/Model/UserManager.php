@@ -109,6 +109,12 @@ class UserManager extends Manager {
 		return $db->query('SELECT id FROM userstest WHERE id = ?', [$id])->fetch();
 		
 	}
+
+	public function getPseudo($db, $id) {
+
+		$req = $db->query('SELECT pseudo FROM userstest WHERE id = ?', [$id])->fetch();
+		return $req->pseudo;
+	}
 	
 	
 }

@@ -96,3 +96,11 @@ body {
 .jfPortrait {
 	width: 100%;
 }
+
+/* Mise en page de la page de lecture */
+.comment {
+	background-color: rgb(181, 199, 211);
+	border: 1px solid rgb(101, 142, 198);
+	border-radius: 3px;
+	margin: 5px;
+}

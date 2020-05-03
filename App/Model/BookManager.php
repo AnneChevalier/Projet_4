@@ -45,11 +45,29 @@ class BookManager extends Manager {
 
 	}
 
-	public function delete($db, $id) {
+	public function delete($db, $bookId) {
 
-		$db->query("DELETE FROM chapters WHERE bookId = ?", [$id]);
+		$req = $db->query("SELECT id FROM chapters WHERE bookId = ?", [$bookId]);
 
-		$db->query("DELETE FROM books WHERE id = ?", [$id]);
+		$chaptersIds = [];
+
+		while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+			
+			$chapterId = $data['id'];
+			array_push($chaptersIds, $chapterId);
+
+		}
+
+		foreach ($chaptersIds as $chapterId) {
+
+			$db->query("DELETE FROM comments WHERE chapterId = ?", [$chapterId]);
+			$db->query("DELETE FROM bookmarks WHERE chapterId = ?", [$chapterId]);
+
+		}
+
+		$db->query("DELETE FROM chapters WHERE bookId = ?", [$bookId]);
+
+		$db->query("DELETE FROM books WHERE id = ?", [$bookId]);
 
 	}
 
@@ -125,18 +143,36 @@ class BookManager extends Manager {
 
 		$req = $db->query("SELECT id FROM books WHERE status = ?", ['basket']);
 
-		$ids = [];
+		$booksIds = [];
 
 		while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
 			
-			$id = $data['id'];
-			array_push($ids, $id);
+			$bookId = $data['id'];
+			array_push($booksIds, $bookId);
 
 		}
 
-		foreach ($ids as $id) {
+		foreach ($booksIds as $bookId) {
 
-			$db->query("DELETE FROM chapters WHERE bookId = ?", [$id]);
+			$req = $db->query("SELECT id FROM chapters WHERE bookId = ?", [$bookId]);
+
+			$chaptersIds = [];
+
+			while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+				
+				$chapterId = $data['id'];
+				array_push($chaptersIds, $chapterId);
+
+			}
+
+			foreach ($chaptersIds as $chapterId) {
+
+				$db->query("DELETE FROM comments WHERE chapterId = ?", [$chapterId]);
+				$db->query("DELETE FROM bookmarks WHERE chapterId = ?", [$chapterId]);
+
+			}
+
+			$db->query("DELETE FROM chapters WHERE bookId = ?", [$bookId]);
 		}
 
 		$db->query("DELETE FROM books WHERE status = ?", ['basket']);

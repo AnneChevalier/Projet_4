@@ -2,26 +2,24 @@
 
 namespace Entity;
 
-class Chapter {
+class Comment {
 
 	protected $id;
-	protected $bookId;
+	protected $userId;
+	protected $chapterId;
 	protected $title;
 	protected $content;
 	protected $creationDate;
-	protected $modificationDate;
-	protected $publicationDate;
 	protected $status;
 	
-	public function __construct($data)
-	{
+	public function __construct($data) {
+		
 		$this->setId($data['id']);
-		$this->setBookId($data['bookId']);
+		$this->setUserId($data['userId']);
+		$this->setChapterId($data['chapterId']);
 		$this->setTitle($data['title']);
 		$this->setContent($data['content']);
 		$this->setCreationDate($data['creationDate']);
-		$this->setModificationDate($data['modificationDate']);
-		$this->setPublicationDate($data['publicationDate']);
 		$this->setStatus($data['status']);
 	}
 
@@ -31,9 +29,15 @@ class Chapter {
 
 	}
 
-	public function setBookId($bookId) {
+	public function setUserId($userId) {
 
-		$this->bookId = (int) $bookId;
+		$this->userId = (int) $userId;
+
+	}
+
+	public function setChapterId($chapterId) {
+
+		$this->chapterId = (int) $chapterId;
 
 	}
 
@@ -55,18 +59,6 @@ class Chapter {
 
 	}
 
-	public function setModificationDate($modificationDate) {
-
-		$this->modificationDate = $modificationDate;
-
-	}
-
-	public function setPublicationDate($publicationDate) {
-
-		$this->publicationDate = $publicationDate;
-
-	}
-
 	public function setStatus($status) {
 
 		$this->status = $status;
@@ -78,9 +70,15 @@ class Chapter {
 
 	}
 
-	public function bookId() {
+	public function userId() {
 
-		return $this->bookId;
+		return $this->userId;
+
+	}
+
+	public function chapterId() {
+
+		return $this->chapterId;
 
 	}
 
@@ -99,18 +97,6 @@ class Chapter {
 	public function creationDate() {
 
 		return $this->creationDate;
-
-	}
-
-	public function modificationDate() {
-
-		return $this->modificationDate;
-
-	}
-
-	public function publicationDate() {
-
-		return $this->publicationDate;
 
 	}
 

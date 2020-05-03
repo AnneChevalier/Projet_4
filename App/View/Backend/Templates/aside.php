@@ -8,8 +8,7 @@
 
 	    <ul id="menudashboard" class="list-group nav navbar-nav">
 	        <li class="nav-item"><a class="nav-link" href="./backindex.php?controller=edit">Editer</a></li>
-	        <li class="nav-item"><a class="nav-link" href="">Modérer</a></li>
-	        <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+	        <li class="nav-item"><a class="nav-link" href="./backindex.php?controller=moderate">Modérer</a></li>
 	    </ul>
 
 	</nav>

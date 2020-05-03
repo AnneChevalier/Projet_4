@@ -52,8 +52,7 @@ class HomeController extends Controller {
 								<div class="row">
 									<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
 									
-									<form method="post" action="./index.php?controller=reading" class="col-md-2">
-										<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+									<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
 										<button type="submit" class="btn">Lire</button>
 									</form>
 								</div>
@@ -113,8 +112,7 @@ class HomeController extends Controller {
 									<div class="row">
 										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
 										
-										<form method="post" action="./index.php?controller=reading" class="col-md-2">
-											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+										<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
 											<button type="submit" class="btn">Lire</button>
 										</form>
 									</div>
@@ -155,8 +153,7 @@ class HomeController extends Controller {
 				
 				echo '<div class="row">
 						<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
-						<form method="post" action="./index.php?controller=reading" class="col-md-2">
-								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+						<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
 								<button type="submit" class="btn">Lire</button>
 						</form>
 						<form method="post" action="./index.php?controller=home&action=deleteBookmark" class="col-md-2">
