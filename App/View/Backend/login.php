@@ -28,7 +28,7 @@
 
 		<button type="submit" class="btn btn-primary">Connexion</button>
 
-		<p><a href="">Mot de passe oublié ?</a></p>
+		<p><a href="./index.php?controller=forget">Mot de passe oublié ?</a></p>
 
 	</form>
 

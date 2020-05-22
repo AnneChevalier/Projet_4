@@ -47,41 +47,55 @@ use JFFram\Session;
 
 	<body>
 
-		<?php if (Session::getInstance()->hasFlashes()) {
-
-                    foreach (Session::getInstance()->getFlashes() as $type => $message) { ?>
-                                                
-                        <div class="alert alert-<?= $type; ?>">
-                            <?= $message; ?>
-                        </div>
-                    <?php }
-                }
-        ?>
-
-        <?php
+		<?php 
+        
         if (Session::getInstance()->read('auth')) {
         	
-        	require 'header.php';
-        ?>
+			if (Session::getInstance()->read('auth')->admin) {
 
-        <div class="container-fluid">
-        	<div class="row">
+				require 'header.php';
+				?>
 
-        <?php
+				<div class="container-fluid">
+        			<div class="row main">
 
-        		require 'aside.php';
+			        	<?php
+			        	require 'aside.php';
+			        	?>
+
+			        	
+
+						<div class="container col-md-10">
+
+							<?php if (Session::getInstance()->hasFlashes()) {
+
+                foreach (Session::getInstance()->getFlashes() as $type => $message) { ?>
+                                                
+                    <div class="alert alert-<?= $type; ?>">
+                        <?= $message; ?>
+                    </div>
+                <?php }
+            }?>
+
+							<?= $content ?>
+
+						</div>
+					</div>
+				</div>
+			<?php
+			require 'footer.php';
+
+			} else { ?>
+
+				<h3 class="text-center">Oups... Vous n'avez pas accès à cette partie du site...</h3>
+
+			<?php }
+        	
+        } else {
+
+        	require './App/View/Backend/login.php';
         }
         ?>
-
-        		<div class="col-md-2"></div>
-				<div class="container col-md-10">
-
-					<?= $content ?>
-
-				</div>
-
-			</div>
-		</div>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="./Web/bootstrap_4.4.1/js/bootstrap.min.js"></script>

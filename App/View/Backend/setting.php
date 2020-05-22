@@ -4,27 +4,27 @@ use JFFram\Session;
 
 ?>
 
-<div class="hmargin">
+<h1>Paramètres du compte d'administration</h1>
 
-	<h1>Mon Compte</h1>
+<?php
 
-	<p>Bonjour <?php echo Session::getInstance()->read('auth')->pseudo; ?> !</p>
-
-	<h3>Mes informations :</h3>
+if (Session::getInstance()->read('auth')->admin) {?>
+	
+	<h3>Informations :</h3>
 
 	<p>Pseudo : <?php echo Session::getInstance()->read('auth')->pseudo; ?></p>
 	<p>Adresse Email : <?php echo Session::getInstance()->read('auth')->email; ?></p>
 
 	<h4>Modifier mes informations : </h4>
 
-	<form method="post" action="./index.php?controller=account&action=updatePseudo">
+	<form method="post" action="./backindex.php?controller=setting&action=updatePseudo">
 		<div class="form-group">
 			<label>Changer mon pseudo :</label>
 			<input type="text" name="pseudo" class="form-control"/>
 			<button type="submit" class="btn vmargin">Valider</button>
 		</div>
 	</form>
-	<form method="post" action="./index.php?controller=account&action=updateEmail">
+	<form method="post" action="./backindex.php?controller=setting&action=updateEmail">
 		<div class="form-group">
 			<label>Changer mon adresse email :</label>
 			<input type="email" name="email" class="form-control"/>
@@ -34,7 +34,7 @@ use JFFram\Session;
 
 	<h4>Changer mon mot de passe :</h4>
 
-	<form action="./index.php?controller=account&action=changePassword" method="post">
+	<form action="./backindex.php?controller=setting&action=changePassword" method="post">
 
 		<div class="form-group">
 			<label>Ancien mot de passe :</label>
@@ -54,9 +54,7 @@ use JFFram\Session;
 		
 	</form>
 
-	<?php if (!Session::getInstance()->read('auth')->admin) {?>
+<?php
+}
 
-		<a href="./index.php?controller=account&action=delete"><button type="button" class="btn vmargin">Supprimer mon compte</button></a>
-	<?php } ?>
-
-</div>
+?>

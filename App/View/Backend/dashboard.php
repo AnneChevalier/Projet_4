@@ -1,1 +1,1 @@
-<h1>Tableau de bord</h1>
+<h1 class="text-center vmargin">Bienvenue sur le Tableau de bord !</h1>

@@ -1,16 +1,16 @@
-<div id="reportedCom" class="row">
-	<div class="alert alert-block alert-danger col-md-11">
-		<h3>Les commentaires signalés</h3>
+<div class="card border-danger vmargin">
+	<div class="card-header border-danger">
+		<h3 class="card-title text-danger">Les commentaires signalés</h3>
 	</div>
-	<div class="col-md-11">
+	<div class="card-body">
 		<?php ModerateController::displayReportedComments(); ?>
 	</div>
 </div>
-<div id="newCom" class="row">
-	<div class="alert alert-block alert-primary col-md-11">
-		<h3>Les nouveaux commentaires</h3>
+<div class="card border-primary vmargin">
+	<div class="card-header border-primary">
+		<h3 class="card-title text-blue">Les nouveaux commentaires</h3>
 	</div>
-	<div class="col-md-11">
+	<div class="card-body">
 		<?php ModerateController::displayNewComments(); ?>
 	</div>
 </div>

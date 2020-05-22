@@ -1,6 +1,6 @@
-<h1>Mot de passe oublié</h1>
+<h1 class="hmargin vmargin">Mot de passe oublié</h1>
 
-<form action="./index.php?controller=forget&action=forget" method="post">
+<form action="./index.php?controller=forget&action=forget" method="post" class="hmargin vmargin">
 
 	<div class="form-group">
 

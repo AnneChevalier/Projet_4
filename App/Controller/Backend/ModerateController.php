@@ -26,14 +26,14 @@ class ModerateController extends Controller {
 				$userManager = new UserManager();
 				
 				echo'
-					<div class="row comment">
+					<div class="card border-danger">
 						<p class="col-md-8">' . $comment->creationDate() . ' par ' . $userManager->getPseudo($db, $userId) . '</p>
 						<h4 class="col-md-10">' . $comment->title() . '</h4>
 						<p class="col-md-12">' . $comment->content() . '</p>
 						<form method="post" action="./backindex.php?controller=moderate&action=validate">
 							<input type="hidden" name="commentId" value="' . $comment->id() . '" />
 							<button type="submit" class="btn">Valider le commentaire</button>
-							<a href="./backindex.php?controller=moderate&action=delete"><button type="button" class="btn">Supprimer le commentaire</button></a>
+							<a href="./backindex.php?controller=moderate&action=delete&id=' . $comment->id() . '"><button type="button" class="btn">Supprimer le commentaire</button></a>
 						</form>
 					</div>';
 
@@ -42,7 +42,7 @@ class ModerateController extends Controller {
 		} else {
 
 			echo '
-				<div class="row comment">
+				<div class="card">
 					Aucun commentaire n\'a été signalé.
 				</div>';
 
@@ -65,7 +65,7 @@ class ModerateController extends Controller {
 				$userManager = new UserManager();
 				
 				echo'
-					<div class="row comment">
+					<div class="card border-primary">
 						<p class="col-md-8">' . $comment->creationDate() . ' par ' . $userManager->getPseudo($db, $userId) . '</p>
 						<h4 class="col-md-10">' . $comment->title() . '</h4>
 						<p class="col-md-12">' . $comment->content() . '</p>
@@ -81,7 +81,7 @@ class ModerateController extends Controller {
 		} else {
 
 			echo '
-				<div class="row comment">
+				<div class="card">
 					Pas de nouveau commentaire.
 				</div>';
 
@@ -109,6 +109,8 @@ class ModerateController extends Controller {
 		$db = Manager::getDatabase();
 		$commentId = (int) $_GET['id'];
 		$commentManager = new CommentManager();
+
+		var_dump($commentManager->idExist($db, $commentId));
 
 		if ($commentManager->idExist($db, $commentId)) {
 			

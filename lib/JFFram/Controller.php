@@ -44,4 +44,19 @@ abstract class Controller {
 		$view = new View($this->action, $controller, $app);
 		$view->generate($dataView, $app);
 	}
+
+	public function contactForm() {
+
+		$email = 'Message de ' . $_POST['pseudo'] . '(' . $_POST['email'] . ')<br/>' . $_POST['content'];
+
+		$retour = mail('anne.chevalier@iso.fr', 'Envoi depuis la page Contact', $email);
+
+    	if ($retour) {
+
+    		Session::getInstance()->setFlash('success', "Votre message a bien été envoyé.");
+
+				header('Location: ./index.php');
+
+    	}
+	}
 }

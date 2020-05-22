@@ -1,6 +1,8 @@
 <h2>Corbeille</h2>
 <div>
-	<?php BasketController::getlist(); ?>
+	<table>
+		<?php BasketController::getlist(); ?>	
+	</table>
 </div>
 <div>
 	<button type="button" class="btn"><a href="./backindex.php?controller=basket&action=restoreAll">Tout Restaurer</a></button>	

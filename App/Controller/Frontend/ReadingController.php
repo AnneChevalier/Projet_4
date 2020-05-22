@@ -18,14 +18,17 @@ class ReadingController extends Controller {
 	
 	static function displayChapter($id) {
 
-		/*verifier que l'id existe bien*/
-
 		$db = Manager::getDatabase();
-		$manager = new ChapterManager();
-		$chapter = $manager->getChapter($db, $id);
-		$content = html_entity_decode($chapter->content());
+		$chapterManager = new ChapterManager();
 
-		echo "<h3>" . $chapter->title() . "</h3>" . $content;
+		if ($chapterManager->idExist($db, $id)) {
+
+			$chapter = $chapterManager->getChapter($db, $id);
+			$content = html_entity_decode($chapter->content());
+
+			echo "<h3>" . $chapter->title() . "</h3>" . $content;
+
+		}
 
 	}
 
@@ -49,23 +52,30 @@ class ReadingController extends Controller {
 
 						if (Session::getInstance()->read('auth')->pseudo != $userManager->getPseudo($db, $userId)) {
 
-							if ($comment->status() != 'valid') {
+							if ($comment->status() != 'valid' && $comment->userId() != 11) {
 								
-								echo '<form method="post" action="./index.php?controller=reading&action=report">
+								echo '<form method="post" action="./index.php?controller=reading&action=report" class="float-right">
 										<input type="hidden" name="chapterId" value="' . $chapterId . '"/>
 										<input type="hidden" name="commentId" value="' . $comment->id() . '"/>
-										<button type="submit"><i class="fas fa-flag"></i></button>
+										<button type="submit" class="float-right"><i class="fas fa-flag"></i></button>
 									</form>';
 							}
 
 						} else {
-							echo '<div class="row">
-									<form method="post" action="./index.php?controller=editComment" class="col-md-1">
-										<input type="hidden" name="chapterId" value="' . $chapterId . '"/>
-										<input type="hidden" name="commentId" value="' . $comment->id() . '"/>
-										<button type="submit"><i class="fas fa-pencil-alt"></i></button>
-									</form>
-									<form method="post" action="./index.php?controller=reading&action=delete" class="col-md-1">
+
+							echo '<div class="row float-right">';
+
+							if ($comment->status() != 'valid') {
+								echo '
+										<form method="post" action="./index.php?controller=editComment">
+											<input type="hidden" name="chapterId" value="' . $chapterId . '"/>
+											<input type="hidden" name="commentId" value="' . $comment->id() . '"/>
+											<button type="submit"><i class="fas fa-pencil-alt"></i></button>
+										</form>';
+							}
+
+							echo '
+									<form method="post" action="./index.php?controller=reading&action=delete">
 										<input type="hidden" name="chapterId" value="' . $chapterId . '"/>
 										<input type="hidden" name="commentId" value="' . $comment->id() . '"/>
 										<button type="submit"><i class="fas fa-times"></i></button>
@@ -135,9 +145,6 @@ class ReadingController extends Controller {
 			
 			$commentManager->delete($db, $commentId);
 		}
-
-
-
 
 		header('Location: ./index.php?controller=reading&id=' . $chapterId);
 

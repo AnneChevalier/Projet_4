@@ -1,6 +1,14 @@
 /* Pour ne pas qu'un élément soit caché par la barre de navigation */
 body {
-	margin-top: 100px;
+	margin-top: 86px;
+}
+
+footer {
+	background-color: rgb(181, 199, 211);
+}
+
+.main {
+	min-height: 84vh;
 }
 
 #logo {
@@ -34,10 +42,53 @@ body {
 	border: 1px solid rgb(101, 142, 198);
 }
 
-.sidebar-sticky {
-	height: 80%;
-	z-index: 100;
+.btn:hover {
+	color: rgb(31, 49, 71);
 }
+
+.fab, .far {
+	color: rgb(101, 142, 198);
+	font-size: 2em;
+}
+
+a {
+	color: rgb(33, 37, 41);
+}
+
+a:hover {
+	text-decoration: none;
+	color: rgb(31, 49, 71);
+}
+
+#navbarContent~ .collapse:not(.show) {
+	display: none;
+}
+
+.row {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.vmargin {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+.hmargin {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.container-fluid {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+table tr:nth-child(2n+1) {
+    background-color: rgb(181, 199, 211);
+}
+
+/* Mise en page de l'éditeur de livre */
 
 #createbook {
 	border: 3px solid rgb(101, 142, 198);
@@ -53,8 +104,6 @@ body {
 	padding-top: 30%;
 }
 
-/* mise en page de l'éditeur de livre */
-
 #formAddBook {
 	padding-top: 50px;
 }
@@ -66,20 +115,20 @@ body {
 	text-align: center;
 }
 
+.center {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
 #cover {
-	height: 100%;
-	width: 100%;
+	max-height: 100%;
+	max-width: 100%;
 	margin: auto;
 	display: block;
 }
 
 #resume {
 	height: 200px;
-}
-
-#booklist {
-	display: flex;
-	justify-content: space-around;
 }
 
 .bookcover {
@@ -97,10 +146,102 @@ body {
 	width: 100%;
 }
 
+.editicon {
+	margin-left: 6px;
+}
+
+.editiconout {
+	margin-left: 19px;
+}
+
+.text-blue {
+	color: rgb(101, 142, 198);
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+}
+
 /* Mise en page de la page de lecture */
 .comment {
 	background-color: rgb(181, 199, 211);
 	border: 1px solid rgb(101, 142, 198);
 	border-radius: 3px;
 	margin: 5px;
+}
+
+#bmbtn {
+	border: 0px;
+	background-color: transparent !important;
+	width: 100%;
+}
+
+.asiderow {
+	margin-right: -15px !important;
+	margin-left: -15px !important;	
+}
+
+.fa-bookmark {
+	margin-left: 20px;
+}
+
+#lastBook, #author {
+	padding-top: 86px;
+	margin-top: -80px;
+}
+
+/* Responsive */
+
+/* tablette */
+@media all and (max-width: 992px) {
+
+	.logo {
+		margin: auto;
+	}
+
+	.dbtitle {
+		display: none;
+	}
+
+	.btndetails {
+		display: none;
+	}
+
+	.btnicon {
+		margin: auto;
+	}
+
+	.basketbtn {
+		width: 100%;
+	}
+
+	.textbtn {
+		display: none;
+	}
+
+	.editicon {
+		margin: auto;
+	}
+
+	.editiconout {
+		margin: auto;
+	}
+}
+
+/* smartphone */
+@media all and (max-width: 767px) {
+
+	.btnreadme {
+		text-align: center;
+	}
+
+	.btnregister {
+		margin: auto;
+	}
+
+	.gray {
+		display: none;
+	}
+
 }

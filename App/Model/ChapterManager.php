@@ -33,7 +33,7 @@ class ChapterManager extends Manager {
 
 	static function getPublishedChapters($db, $bookId) {
 
-		$req = $db->query('SELECT * FROM chapters WHERE bookId = ? AND status = ?', [$bookId, 'online']);
+		$req = $db->query('SELECT * FROM chapters WHERE bookId = ? AND status = ? ORDER BY publicationDate', [$bookId, 'online']);
 		$chapters = [];
 
 		while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {

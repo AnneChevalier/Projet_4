@@ -1,4 +1,4 @@
-<h1>S'inscrire</h1>
+<h1 class="vmargin hmargin">S'inscrire</h1>
 
 <?php if (!empty($errors)) { ?>
 
@@ -16,7 +16,7 @@
 <?php } ?>
 
 
-<form action="./index.php?controller=register&action=register" method="post">
+<form action="./index.php?controller=register&action=register" method="post" class="vmargin hmargin">
 
 	<div class="form-group">
 		<label for="pseudo">Pseudo</label>

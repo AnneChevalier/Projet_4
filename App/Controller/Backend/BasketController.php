@@ -22,37 +22,45 @@ class BasketController extends Controller {
 		foreach ($deletedBooks as $deletedBook) {
 			
 			echo
-				'<div class="row">
-					<div class="col-md-6">' . $deletedBook->title() . ' crée le ' . $deletedBook->creationDate() . '</div>
-					<form method="post" action="./backindex.php?controller=basket&action=restore" class="col-md-2">
-						<input type="hidden" name="entity" value="book"/> 
-						<input type="hidden" name="id" value="' . $deletedBook->id() . '"/>
-						<button type="submit" class="btn">Restaurer</button>
-					</form>
-					<form method="post" action="./backindex.php?controller=basket&action=delete" class="col-md-2">
-						<input type="hidden" name="entity" value="book"/>
-						<input type="hidden" name="id" value="' . $deletedBook->id() . '"/>
-						<button type="submit" class="btn">Supprimer</button>
-					</form>
+				'<tr>
+					<td>' . $deletedBook->title() . ' crée le ' . $deletedBook->creationDate() . '</td>
+					<td>
+						<form method="post" action="./backindex.php?controller=basket&action=restore">
+							<input type="hidden" name="entity" value="book"/> 
+							<input type="hidden" name="id" value="' . $deletedBook->id() . '"/>
+							<button type="submit" class="btn">Restaurer</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="./backindex.php?controller=basket&action=delete">
+							<input type="hidden" name="entity" value="book"/>
+							<input type="hidden" name="id" value="' . $deletedBook->id() . '"/>
+							<button type="submit" class="btn">Supprimer</button>
+						</form>
+					</td>
 				</div>';
 		}
 
 		foreach ($deletedChapters as $deletedChapter) {
 			
 			echo
-				'<div class="row">
-					<div class="col-md-6">' . $deletedChapter->title() . ' crée le ' . $deletedChapter->creationDate() . '</div>
-					<form method="post" action="./backindex.php?controller=basket&action=restore" class="col-md-2">
-						<input type="hidden" name="entity" value="chapter"/>
-						<input type="hidden" name="id"  value="' . $deletedChapter->id() . '"/>
-						<button type="submit" class="btn">Restaurer</button>
-					</form>
-					<form method="post" action="./backindex.php?controller=basket&action=delete" class="col-md-2">
-						<input type="hidden" name="entity" value="chapter"/>
-						<input type="hidden" name="id"  value="' . $deletedChapter->id() . '"/>
-						<button type="submit" class="btn">Supprimer</button>
-					</form>
-				</div>';
+				'<tr>
+					<td>' . $deletedChapter->title() . ' crée le ' . $deletedChapter->creationDate() . '</td>
+					<td>
+						<form method="post" action="./backindex.php?controller=basket&action=restore">
+							<input type="hidden" name="entity" value="chapter"/>
+							<input type="hidden" name="id"  value="' . $deletedChapter->id() . '"/>
+							<button type="submit" class="btn">Restaurer</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="./backindex.php?controller=basket&action=delete">
+							<input type="hidden" name="entity" value="chapter"/>
+							<input type="hidden" name="id"  value="' . $deletedChapter->id() . '"/>
+							<button type="submit" class="btn">Supprimer</button>
+						</form>
+					</td>
+				</tr>';
 		}
 	}
 

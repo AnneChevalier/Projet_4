@@ -15,7 +15,7 @@ class Rooter {
 
 	public function executeRequest() {
 
-		/*try {*/
+		try {
 
 			$request = new Request(array_merge($_GET, $_POST));
 
@@ -24,11 +24,11 @@ class Rooter {
 
 			$controller->executeAction($action, $this->app);
 
-		/*} catch (Exception $e) {
+		} catch (Exception $e) {
 
 			$this->handleError($e);
 
-		}*/
+		}
 	}
 
 	private function createController(Request $request) {
@@ -55,6 +55,12 @@ class Rooter {
 		}
 
 		$controllerClass = $controller . "Controller";
+
+		if ($controllerClass == 'LoginController') {
+			
+			Session::getInstance()->delete('auth');
+		}
+
 		$controllerFile = "./App/Controller/" . $this->app . "/" . $controllerClass . ".php";
 
 		if (file_exists($controllerFile)) {

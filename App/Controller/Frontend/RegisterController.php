@@ -15,7 +15,7 @@ class RegisterController extends Controller {
 	public function register() {
 
 
-		if (!empty($_POST)) {
+		if (!empty($_POST['pseudo'])) {
 	
 			$errors = array();
 
@@ -48,7 +48,7 @@ class RegisterController extends Controller {
 				$manager = new UserManager();
 				$manager->register($db, $_POST['pseudo'], $_POST['email'], $_POST['password']);
 
-				Session::getInstance()->getFlashes('success', "Votre compte a bien été créé.");
+				Session::getInstance()->setFlash('success', "Votre compte a bien été créé.");
 
 				header("Location: ./index.php?controller=login");
 

@@ -1,6 +1,6 @@
-<h1>Se connecter</h1>
+<h1 class="vmargin hmargin">Se connecter</h1>
 
-<form action="./index.php?controller=login&action=login" method="post">
+<form action="./index.php?controller=login&action=login" method="post" class="vmargin hmargin">
 
 	<div class="form-group">
 
@@ -26,4 +26,4 @@
 
 </form>
 
-<p><a href="./index.php?controller=forget">Mot de passe oublié</a></p>
+<p class="vmargin hmargin"><a href="./index.php?controller=forget">Mot de passe oublié</a></p>

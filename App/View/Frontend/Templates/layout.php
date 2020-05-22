@@ -47,11 +47,11 @@ use JFFram\Session;
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		
 
 			<?php require 'header.php'; ?>
 
-			<div class="content">
+			
 
 				<?php if (Session::getInstance()->hasFlashes()) {
 
@@ -63,17 +63,17 @@ use JFFram\Session;
                     <?php }
                 } ?>
 
-				<div class="view">
-
-					<?= $content ?>
-
-				</div>
+                <div class="content-fuid">
+                	<div class="view">
+						<?= $content ?>
+					</div>
+                </div>
 				
 			</div>
 
 			<?php require 'footer.php'; ?>
 
-		</div>
+	
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="./Web/bootstrap_4.4.1/js/bootstrap.min.js"></script>

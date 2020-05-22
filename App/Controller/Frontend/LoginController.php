@@ -25,12 +25,12 @@ class LoginController extends Controller {
 			if($user) {
 
 				$session->setFlash('success', "Vous êtes connecté.");
-
 				header('Location: ./index.php');
 
 			} else {
 
 				$session->setFlash('danger', "Identifiant ou mot de passe incorrecte.");
+				header('Location: ./index.php?controller=login');
 
 			}
 			

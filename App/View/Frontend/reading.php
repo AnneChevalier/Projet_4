@@ -5,21 +5,24 @@ use JFFram\Session;
 ?>
 
 <div class="row">
-	<aside class="col-md-2 bg-light fixed-left sidebar-sticky position-fixed">
+	<aside class="col-md-2 bg-light">
 		<?php if(Session::getInstance()->read('auth')) {
 
 			echo'
-			<form method="post" action="./index.php?controller=bookmark&action=mark">
-				<input type="hidden" name="userId" value="' . Session::getInstance()->getValue("auth")->id . '"/>
-				<input type="hidden" name="chapterId" value="' . $_GET["id"] . '"/>
-				<input type="submit" class="btn">
-			</form>
-			<div>marque page</div>';
+			<ul class="list-group row asiderow">
+				<li class="list-group-item bg-light">
+					<form method="post" action="./index.php?controller=bookmark&action=mark">
+						<input type="hidden" name="userId" value="' . Session::getInstance()->getValue("auth")->id . '"/>
+						<input type="hidden" name="chapterId" value="' . $_GET["id"] . '"/>
+						<button id="bmbtn" type="submit" class="bg-light row"><p class="btndetails">Marque page</p><i class="far fa-bookmark btnicon"></i></button>
+					</form>
+				</li>
+			</ul>
+			';
 			
 		} ?>
 	</aside>
-	<div class="col-md-2"></div>
-	<div class="col-md-10">
+	<div class="col-md-10 vmargin">
 		<?php ReadingController::displayChapter($_GET['id']); ?>
 		<div>
 			<?php if(Session::getInstance()->read('auth')) { ?>
@@ -29,8 +32,8 @@ use JFFram\Session;
 					<input type="text" name="title" placeholder="titre du commentaire" required class="form-control" />
 					<input type="hidden" name="userId" value="<?php echo Session::getInstance()->getValue("auth")->id; ?>"/>
 					<input type="hidden" name="chapterId" value="<?=$_GET["id"]?>"/>
-					<textarea name="content" placeholder="Ecrivez votre commentaire ici." required class="form-control"></textarea>
-					<button type="submit" class="btn">Valider</button>
+					<textarea name="content" placeholder="Ecrivez votre commentaire ici." required class="form-control vmargin"></textarea>
+					<button type="submit" class="btn vmargin">Valider</button>
 				</form>
 
 			<?php } else { ?>

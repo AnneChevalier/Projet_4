@@ -28,18 +28,20 @@ class HomeController extends Controller {
 				<div class="row">
 					<div class="col-md-2">
 						<div class="row">
-							<div>
-								<img class="bookcover" src="./Web/images/covers/' . $book->cover() . '"/>
+							<div class="col-md-12">
+								<img class="bookcover rounded mx-auto d-block" src="./Web/images/covers/' . $book->cover() . '"/>
 							</div>
-							<p>par : ' . $book->author() . '</p>
+							<p class="col-md-12 text-center">par : ' . $book->author() . '</p>
 						</div>
 					</div>
 					<div class="col-md-10">
 						<h3 class="col-md-5">' . $book->title() .'</h3>
-						<p class="col-md-12">' . $book->resume() .'</p>
-						<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
-							<i class="fab fa-readme"></i>
-						</button>
+						<p class="col-md-12 text-justify">' . $book->resume() .'</p>
+						<p class="btnreadme">
+							<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
+								<i class="fab fa-readme"></i>
+							</button>
+						</p>
 					</div>
 					<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
 						<h5>Chapitre(s) Disponible(s)</h5>';
@@ -84,21 +86,23 @@ class HomeController extends Controller {
 					
 					echo 
 
-					'<div class="row">
+					'<div class="row vmargin">
 						<div class="col-md-2">
 							<div class="row">
-								<div>
-									<img class="bookcover" src="./Web/images/covers/' . $book->cover() . '"/>
+								<div class="col-md-12">
+									<img class="bookcover rounded mx-auto d-block" src="./Web/images/covers/' . $book->cover() . '"/>
 								</div>
-								<p>par : ' . $book->author() . '</p>
+								<p class="col-md-12 text-center">par : ' . $book->author() . '</p>
 							</div>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-10 vmargin">
 							<h3 class="col-md-6">' . $book->title() .'</h3>
-							<p class="col-md-12">' . $book->resume() .'</p>
-							<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
-								<i class="fab fa-readme"></i>
-							</button>
+							<p class="col-md-12 text-justify">' . $book->resume() .'</p>
+							<p class="btnreadme">
+								<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
+									<i class="fab fa-readme"></i>
+								</button>
+							</p>
 						</div>
 						<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
 							<h5>Chapitre(s) Disponible(s)</h5>
@@ -113,7 +117,7 @@ class HomeController extends Controller {
 										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
 										
 										<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
-											<button type="submit" class="btn">Lire</button>
+											<button type="submit" class="btn vmargin">Lire</button>
 										</form>
 									</div>
 								</li>
@@ -142,8 +146,8 @@ class HomeController extends Controller {
 
 		if (!empty($bookmarks)) {
 			
-			echo "<p>Reprendre au marque-page</p>
-				<ul>";
+			echo '<h4>Reprendre au marque-page</h4>
+				<table>';
 
 			foreach ($bookmarks as $bookmark) {
 
@@ -151,19 +155,24 @@ class HomeController extends Controller {
 
 				$chapter = $chapterManager->getChapter($db, $bookmark->chapterId());
 				
-				echo '<div class="row">
-						<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
-						<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
+				echo '<tr>
+						<td>' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</td>
+						<td>
+							<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '">
 								<button type="submit" class="btn">Lire</button>
-						</form>
-						<form method="post" action="./index.php?controller=home&action=deleteBookmark" class="col-md-2">
+							</form>
+						</td>
+						<td>
+							<form method="post" action="./index.php?controller=home&action=deleteBookmark">
 								<input type="hidden" name="id" value="' . $bookmark->id() . '"/>
 								<button type="submit" class="btn">Supprimer</button>
-						</form>
-					</div>';
+							</form>
+						</td>
+						
+					</tr>';
 			}
 
-			echo "</ul>";
+			echo "</table>";
 
 		}
 
@@ -180,5 +189,4 @@ class HomeController extends Controller {
 		
 	}
 	
-
 }

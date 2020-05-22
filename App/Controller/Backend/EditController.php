@@ -9,6 +9,7 @@ use JFFram\Controller;
 use JFFram\Manager;
 use JFFram\Str;
 use JFFram\Validator;
+use JFFram\Session;
 use Model\BookManager;
 use Model\ChapterManager;
 
@@ -16,7 +17,7 @@ class EditController extends Controller {
 
 	public function createbook() {
 		
-		if (!empty($_POST)) {
+		if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['resume'])) {
 
 			$errors = array();
 
@@ -38,10 +39,15 @@ class EditController extends Controller {
 
 			} else {
 
-				array_push($errors, $validatorPost->getErrors(), $validatorFile->getErrors());
+				array_push($errors, $validatorFile->getErrors());
 			
 			}
 			
+		} else {
+
+			$session = Session::getInstance();
+			$session->setFlash('danger', "Il manque une information pour enregister le livre.");
+			header('Location: ./backindex.php?controller=edit');
 		}
 
 	}
@@ -55,13 +61,9 @@ class EditController extends Controller {
 
 				echo 
 
-				'<div>
-					
-						<button type="button" data-toggle="collapse" data-target="#bookdetails' . $book->id() . '" aria-expanded="false" aria-controls="bookdetails' . $book->id() . '">
+				'<button type="button" data-toggle="collapse" data-target="#bookdetails' . $book->id() . '" aria-expanded="false" aria-controls="bookdetails' . $book->id() . '">
 							<img class="bookcover" src="./Web/images/covers/' . $book->cover() . '"/>
-						</button>
-					
-				</div>';
+				</button>';
 				
 			 }
 		}
@@ -79,9 +81,9 @@ class EditController extends Controller {
 
 				echo 
 
-					'<div id="bookdetails' . $book->id() . '" class="collapse row">
+					'<div id="bookdetails' . $book->id() . '" class="collapse row vmargin">
 						<div class="col-md-2">
-							<div class="row">
+							<div class="row vmargin">
 								<div>
 									<img class="bookcover" src="./Web/images/covers/' . $book->cover() . '"/>
 								</div>
@@ -92,69 +94,102 @@ class EditController extends Controller {
 							<h3 class="col-md-6">' . $book->title() .'</h3>
 							<p class="col-md-12">' . $book->resume() .'</p>
 
-							<div class="row">
+							<div class="row vmargin">
+
 								<div class="bookdetailsbtn">
-									<button class="btn"><a href="./backindex.php?controller=chapeditor&id=' . $book->id() . '">Nouveau Chapitre</a></button>
+									<button class="btn gray">
+										<a href="./backindex.php?controller=chapeditor&id=' . $book->id() . '" class="flex">
+											<div class="textbtn">Nouveau Chapitre</div>
+											<i class="fas fa-file editicon"></i>
+										</a>
+									</button>
 								</div>
+
 								<form method="post" action="./backindex.php?controller=edit&action=online" class="bookdetailsbtn">
 									<input type="hidden" name="id" value="' . $book->id() . '"/>
-									<button class="btn" type="submit">';
+									<button class="btn flex" type="submit">';
 
 									if ($book->status() == "offline") {
-										echo "Mettre en ligne";
+										echo '<div class="textbtn">Mettre en ligne</div><i class="fas fa-toggle-off editicon"></i>';
 									} else {
-										echo "Mettre hors ligne";
+										echo '<div class="textbtn">Mettre hors ligne</div><i class="fas fa-toggle-on editicon"></i>';
 									}
 									echo '</button>
 								</form>
 
 								<div class="bookdetailsbtn">
-									<button id="btneditbook' . $book->id() .'" class="btn">Modifier</button>
+									<button id="btneditbook' . $book->id() .'" class="btn flex">
+										<div class="textbtn">Modifier</div>
+										<i class="fas fa-pencil-alt editicon"></i>
+									</button>
 								</div>
 
 								<form method="post" action="./backindex.php?controller=edit&action=basket" class="bookdetailsbtn">
 									<input type="hidden" name="id" value="' . $book->id() . '"/>
-									<button class="btn">Supprimer</button>
+									<button class="btn flex">
+										<div class="textbtn">Supprimer</div>
+										<i class="fas fa-trash-alt editicon"></i>
+									</button>
 								</form>
 							</div>
 
 						</div>
-						<div class="row">';
+						<div class="row">
+							<table>';
 
 					foreach ($chapters as $chapter) {
 
-						echo '	
-						
-							<div class="col-md-4">' . $chapter->title() . ' crée le ' . $chapter->creationDate() . '</div>
-							<form method="post" action="./backindex.php?controller=display" class="col-md-2">
-								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
-								<button type="submit" class="btn">Visualiser</button>
-							</form>
-							<form method="post" action="./backindex.php?controller=chapeditor" class="col-md-2">
-								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
-								<button type="submit" class="btn">Modifier</button>
-							</form>
-							<form method="post" action="./backindex.php?controller=chapeditor&action=online" class="col-md-2">
-								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
-								<button class="btn" type="submit">';
+						echo '
 
-								if ($chapter->status() == "offline") {
-									echo "Mettre en ligne";
-								} else {
-									echo "Mettre hors ligne";
-								}
-								echo '</button>
-							</form>
-							
-							<form method="post" action="./backindex.php?controller=chapeditor&action=basket" class="col-md-2">
-								<input type="hidden" name="id" value="' . $chapter->id() . '"/>
-								<button type="submit" class="btn">Supprimer</button>
-							</form>
-							';
+								<tr>
+									<td>
+										<div>' . $chapter->title() . ' crée le ' . $chapter->creationDate() . '</div>
+									</td>
+									<td>
+										<form method="post" action="./backindex.php?controller=display">
+											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+											<button type="submit" class="btn flex">
+												<div class="textbtn">Visualiser</div>
+												<i class="fas fa-eye editicon"></i>
+											</button>
+										</form>
+									</td>
+									<td>
+										<form method="post" action="./backindex.php?controller=chapeditor">
+											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+											<button type="submit" class="btn flex gray">
+												<div class="textbtn">Modifier</div>
+												<i class="fas fa-pencil-alt editicon"></i>
+											</button>
+										</form>
+									</td>
+									<td>
+										<form method="post" action="./backindex.php?controller=chapeditor&action=online">
+											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+											<button class="btn flex" type="submit">';
+
+											if ($chapter->status() == "offline") {
+												echo '<div class="textbtn">Mettre en ligne</div><i class="fas fa-toggle-off editiconout"></i>';
+											} else {
+												echo '<div class="textbtn">Mettre hors ligne</div><i class="fas fa-toggle-on editicon"></i>';
+											}
+											echo '</button>
+										</form>
+									</td>
+									<td>
+										<form method="post" action="./backindex.php?controller=chapeditor&action=basket">
+											<input type="hidden" name="id" value="' . $chapter->id() . '"/>
+											<button type="submit" class="btn flex">
+												<div class="textbtn">Supprimer</div>
+												<i class="fas fa-trash-alt editicon"></i>
+											</button>
+										</form>
+									</td>
+								</tr>';
 					}
 
 					echo '
-
+							</table>
 						</div>
 					</div>
 
