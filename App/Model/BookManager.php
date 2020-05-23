@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require './lib/Entity/Book.php';
-
 use JFFram\Manager;
 use Entity\Book;
 use JFFram\Str;

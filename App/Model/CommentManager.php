@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require './lib/Entity/Comment.php';
-
 use JFFram\Manager;
 use Entity\Comment;
 

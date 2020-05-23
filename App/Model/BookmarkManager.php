@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require './lib/Entity/Bookmark.php';
-
 use JFFram\Manager;
 use Entity\Bookmark;
 

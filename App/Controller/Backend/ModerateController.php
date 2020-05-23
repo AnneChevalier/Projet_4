@@ -1,10 +1,5 @@
 <?php
 
-/*namespace Controller\Backend;*/
-
-require './App/Model/CommentManager.php';
-require './App/Model/UserManager.php';
-
 use JFFram\Controller;
 use JFFram\Manager;
 use Model\CommentManager;

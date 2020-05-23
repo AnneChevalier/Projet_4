@@ -2,8 +2,6 @@
 
 namespace Model;
 
-require './lib/Entity/Chapter.php';
-
 use JFFram\Manager;
 use Entity\Chapter;
 

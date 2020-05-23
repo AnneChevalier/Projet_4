@@ -1,11 +1,5 @@
 <?php
 
-/*namespace Controller\Frontend;*/
-
-require './App/Model/BookManager.php';
-require './App/Model/ChapterManager.php';
-require './App/Model/BookmarkManager.php';
-
 use JFFram\Controller;
 use JFFram\Manager;
 use Model\BookManager;

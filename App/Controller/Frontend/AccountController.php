@@ -1,9 +1,5 @@
 <?php
 
-/*namespace Controller\Frontend;*/
-
-require './App/Model/UserManager.php';
-
 use JFFram\Controller;
 use JFFram\Manager;
 use Model\UserManager;
@@ -12,14 +8,6 @@ use JFFram\Session;
 use JFFram\Validator;
 
 class AccountController extends Controller {
-
-	/*public function show() {
-
-		$this->restrict();
-		
-		$this->generateView();
-
-	}*/
 	
 	public function changePassword() {
 

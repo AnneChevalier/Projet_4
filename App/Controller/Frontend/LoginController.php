@@ -1,9 +1,5 @@
 <?php
 
-/*namespace Controller\Frontend;*/
-
-require './App/Model/UserManager.php';
-
 use JFFram\Session;
 use JFFram\Controller;
 use Model\UserManager;

@@ -1,9 +1,5 @@
 <?php
 
-/*namespace Controller\Frontend;*/
-
-require './App/Model/CommentManager.php';
-
 use JFFram\Controller;
 use JFFram\Manager;
 use JFFram\Str;
