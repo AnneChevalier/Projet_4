@@ -64,7 +64,7 @@ use JFFram\Session;
                 } ?>
 
                 <div class="content-fuid">
-                	<div class="view">
+                	<div class="view frontmain">
 						<?= $content ?>
 					</div>
                 </div>

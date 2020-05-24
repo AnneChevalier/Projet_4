@@ -145,4 +145,9 @@ class ChapterManager extends Manager {
 		return $req->bookId;
 
 	}
+
+	public function isPublished($db, $id) {
+
+		return $db->query('SELECT id FROM chapters WHERE id = ? AND status = ?', [$id, "online"])->fetch();
+	}
 }

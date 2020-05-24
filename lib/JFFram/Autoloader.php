@@ -11,7 +11,7 @@ class Autoloader {
 
 		if ($parts[0] == 'JFFram') {
 
-			if (file_exists($file = __DIR__ . '\\' . $class)) {
+			if (file_exists($file = __DIR__ . '/' . $class)) {
 				
 				require $file;
 

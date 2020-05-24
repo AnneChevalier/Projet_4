@@ -80,7 +80,7 @@ class AccountController extends Controller {
 
 			if ($validator->isValid()) {
 				
-				$validator->isUnique('pseudo', $db,'userstest', 'Ce pseudo est déjà pris.');
+				$validator->isUnique('pseudo', $db,'users', 'Ce pseudo est déjà pris.');
 
 			}
 
@@ -126,7 +126,7 @@ class AccountController extends Controller {
 
 			if ($validator->isValid()) {
 				
-				$validator->isUnique('email', $db,'userstest', "Un compte a déjà été créé avec cet email.");
+				$validator->isUnique('email', $db,'users', "Un compte a déjà été créé avec cet email.");
 
 			}
 

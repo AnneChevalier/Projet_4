@@ -144,4 +144,12 @@ class ReadingController extends Controller {
 
 	}
 
+	static function check($id) {
+
+		$db = Manager::getDatabase();
+		$manager = new ChapterManager();
+		
+		return $manager->isPublished($db, $id);
+	}
+
 }

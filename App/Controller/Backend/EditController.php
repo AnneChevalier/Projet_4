@@ -73,6 +73,8 @@ class EditController extends Controller {
 			foreach ($books as $book) {
 
 				$chapters = ChapterManager::getAllChapters($db, $book->id());
+				$bookId = $book->id();
+				$hiddenBookId = Str::encrypt($bookId);
 
 				echo 
 
@@ -93,7 +95,7 @@ class EditController extends Controller {
 
 								<div class="bookdetailsbtn">
 									<button class="btn gray">
-										<a href="./backindex.php?controller=chapeditor&id=' . $book->id() . '" class="flex">
+										<a href="./backindex.php?controller=chapeditor&id=' . $hiddenBookId . '" class="flex">
 											<div class="textbtn">Nouveau Chapitre</div>
 											<i class="fas fa-file editicon"></i>
 										</a>

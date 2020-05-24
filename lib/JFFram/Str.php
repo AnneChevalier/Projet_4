@@ -34,4 +34,15 @@ class Str {
 
 		return htmlspecialchars($data);
 	}
+
+	static function encrypt($data) {
+
+		return openssl_encrypt($data, "AES-128-ECB", "alaska");
+
+	}
+
+	static function decrypt($data) {
+
+		return openssl_decrypt($data, "AES-128-ECB", "alaska");
+	}
 }

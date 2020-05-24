@@ -1,11 +1,16 @@
 <?php
+
+use JFFram\Str;
+
 if (!empty($_GET['id'])) {
+
+	$bookId = Str::decrypt($_GET['id']);
 
 	echo '
 	<form method="post" action="./backindex.php?controller=chapeditor&action=save">
 		<input type="text" name="title" placeholder="Titre du chapitre"/>
 		<textarea class="tinymce" name="content"></textarea>
-		<input type="hidden" name="id" value="' . $_GET['id'] . '"/>
+		<input type="hidden" name="id" value="' . $bookId . '"/>
 		<button class="btn" type="submit">Enregister le chapitre</button>
 	</form>';
 

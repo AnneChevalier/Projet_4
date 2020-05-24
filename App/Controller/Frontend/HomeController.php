@@ -2,6 +2,7 @@
 
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\BookManager;
 use Model\ChapterManager;
 use Model\BookmarkManager;
@@ -18,6 +19,7 @@ class HomeController extends Controller {
 		$chapters = $chapterManager->getPublishedChapters($db, $lastBookId);
 
 		if ($book->id() != 0) {
+
 			echo '
 				<div class="row">
 					<div class="col-md-2">
@@ -42,13 +44,16 @@ class HomeController extends Controller {
 
 						foreach ($chapters as $chapter) {
 
+							$chapterId = $chapter->id();
+							$hiddenChapterId = Str::encrypt($chapterId);
+
 						echo '
 						<ol>	
 							<li>
 								<div class="row">
 									<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
 									
-									<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
+									<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '" class="col-md-2">
 										<button type="submit" class="btn">Lire</button>
 									</form>
 								</div>
@@ -104,13 +109,16 @@ class HomeController extends Controller {
 
 							foreach ($chapters as $chapter) {
 
+								$chapterId = $chapter->id();
+								$hiddenChapterId = Str::encrypt($chapterId);
+
 							echo '
 								
 								<li>
 									<div class="row">
 										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
 										
-										<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '" class="col-md-2">
+										<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '" class="col-md-2">
 											<button type="submit" class="btn vmargin">Lire</button>
 										</form>
 									</div>
@@ -148,11 +156,14 @@ class HomeController extends Controller {
 				$chapterManager = new ChapterManager();
 
 				$chapter = $chapterManager->getChapter($db, $bookmark->chapterId());
+
+				$chapterId = $chapter->id();
+				$hiddenChapterId = Str::encrypt($chapterId);
 				
 				echo '<tr>
 						<td>' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</td>
 						<td>
-							<form method="post" action="./index.php?controller=reading&id=' . $chapter->id() . '">
+							<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '">
 								<button type="submit" class="btn">Lire</button>
 							</form>
 						</td>
