@@ -24,7 +24,7 @@ class Rooter {
 
 			$controller->executeAction($action, $this->app);
 
-		} catch (Exception $e) {
+		} catch(Exception $e) {
 
 			$this->handleError($e);
 

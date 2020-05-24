@@ -34,7 +34,7 @@ if (ReadingController::check($chapterId)) {?>
 						<h4 class="col-md-7">Laissez un commentaire</h4>
 						<input type="text" name="title" placeholder="titre du commentaire" required class="form-control" />
 						<input type="hidden" name="userId" value="<?php echo Session::getInstance()->getValue("auth")->id; ?>"/>
-						<input type="hidden" name="chapterId" value="<?=$_GET["id"]?>"/>
+						<input type="hidden" name="chapterId" value="<?=$chapterId?>"/>
 						<textarea name="content" placeholder="Ecrivez votre commentaire ici." required class="form-control vmargin"></textarea>
 						<button type="submit" class="btn vmargin">Valider</button>
 					</form>

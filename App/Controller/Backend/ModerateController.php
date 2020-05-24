@@ -2,6 +2,7 @@
 
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\CommentManager;
 use Model\UserManager;
 
@@ -22,9 +23,9 @@ class ModerateController extends Controller {
 				
 				echo'
 					<div class="card border-danger">
-						<p class="col-md-8">' . $comment->creationDate() . ' par ' . $userManager->getPseudo($db, $userId) . '</p>
-						<h4 class="col-md-10">' . $comment->title() . '</h4>
-						<p class="col-md-12">' . $comment->content() . '</p>
+						<p class="col-md-8">' . $comment->creationDate() . ' par ' . Str::secured($userManager->getPseudo($db, $userId)) . '</p>
+						<h4 class="col-md-10">' . Str::secured($comment->title()) . '</h4>
+						<p class="col-md-12">' . Str::secured($comment->content()) . '</p>
 						<form method="post" action="./backindex.php?controller=moderate&action=validate">
 							<input type="hidden" name="commentId" value="' . $comment->id() . '" />
 							<button type="submit" class="btn">Valider le commentaire</button>
@@ -61,9 +62,9 @@ class ModerateController extends Controller {
 				
 				echo'
 					<div class="card border-primary">
-						<p class="col-md-8">' . $comment->creationDate() . ' par ' . $userManager->getPseudo($db, $userId) . '</p>
-						<h4 class="col-md-10">' . $comment->title() . '</h4>
-						<p class="col-md-12">' . $comment->content() . '</p>
+						<p class="col-md-8">' . $comment->creationDate() . ' par ' . Str::secured($userManager->getPseudo($db, $userId)) . '</p>
+						<h4 class="col-md-10">' . Str::secured($comment->title()) . '</h4>
+						<p class="col-md-12">' . Str::secured($comment->content()) . '</p>
 						<form method="post" action="./backindex.php?controller=moderate&action=validate">
 							<input type="hidden" name="commentId" value="' . $comment->id() . '" />
 							<button type="submit" class="btn">Valider le commentaire</button>

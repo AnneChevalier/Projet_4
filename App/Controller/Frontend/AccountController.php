@@ -88,7 +88,9 @@ class AccountController extends Controller {
 
 				$manager = new UserManager();
 
-				$manager->updatePseudo($db, $id, $_POST['pseudo']);
+				$pseudo = Str::secured($_POST['pseudo']);
+
+				$manager->updatePseudo($db, $id, $pseudo);
 				$user = $manager->getUpdatedUser($db, $id);
 
 				Session::getInstance()->setFlash('success', "Votre pseudo a bien été modifié.");

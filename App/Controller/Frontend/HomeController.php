@@ -27,12 +27,12 @@ class HomeController extends Controller {
 							<div class="col-md-12">
 								<img class="bookcover rounded mx-auto d-block" src="./Web/images/covers/' . $book->cover() . '"/>
 							</div>
-							<p class="col-md-12 text-center">par : ' . $book->author() . '</p>
+							<p class="col-md-12 text-center">par : ' . Str::secured($book->author()) . '</p>
 						</div>
 					</div>
 					<div class="col-md-10">
-						<h3 class="col-md-5">' . $book->title() .'</h3>
-						<p class="col-md-12 text-justify">' . $book->resume() .'</p>
+						<h3 class="col-md-5">' . Str::secured($book->title()) .'</h3>
+						<p class="col-md-12 text-justify">' . Str::secured($book->resume()) .'</p>
 						<p class="btnreadme">
 							<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
 								<i class="fab fa-readme"></i>
@@ -51,7 +51,7 @@ class HomeController extends Controller {
 						<ol>	
 							<li>
 								<div class="row">
-									<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
+									<div class="col-md-4">' . Str::secured($chapter->title()) . ' publié le ' . $chapter->publicationDate() . '</div>
 									
 									<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '" class="col-md-2">
 										<button type="submit" class="btn">Lire</button>
@@ -91,12 +91,12 @@ class HomeController extends Controller {
 								<div class="col-md-12">
 									<img class="bookcover rounded mx-auto d-block" src="./Web/images/covers/' . $book->cover() . '"/>
 								</div>
-								<p class="col-md-12 text-center">par : ' . $book->author() . '</p>
+								<p class="col-md-12 text-center">par : ' . Str::secured($book->author()) . '</p>
 							</div>
 						</div>
 						<div class="col-md-10 vmargin">
-							<h3 class="col-md-6">' . $book->title() .'</h3>
-							<p class="col-md-12 text-justify">' . $book->resume() .'</p>
+							<h3 class="col-md-6">' . Str::secured($book->title()) .'</h3>
+							<p class="col-md-12 text-justify">' . Str::secured($book->resume()) .'</p>
 							<p class="btnreadme">
 								<button type="button" data-toggle="collapse" data-target="#chapters' . $book->id() . '" aria-expanded="false" aria-controls="chapters' . $book->id() . '">
 									<i class="fab fa-readme"></i>
@@ -116,7 +116,7 @@ class HomeController extends Controller {
 								
 								<li>
 									<div class="row">
-										<div class="col-md-4">' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</div>
+										<div class="col-md-4">' . Str::secured($chapter->title()) . ' publié le ' . $chapter->publicationDate() . '</div>
 										
 										<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '" class="col-md-2">
 											<button type="submit" class="btn vmargin">Lire</button>
@@ -161,7 +161,7 @@ class HomeController extends Controller {
 				$hiddenChapterId = Str::encrypt($chapterId);
 				
 				echo '<tr>
-						<td>' . $chapter->title() . ' publié le ' . $chapter->publicationDate() . '</td>
+						<td>' . Str::secured($chapter->title()) . ' publié le ' . $chapter->publicationDate() . '</td>
 						<td>
 							<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '">
 								<button type="submit" class="btn">Lire</button>

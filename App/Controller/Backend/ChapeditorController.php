@@ -36,7 +36,7 @@ class ChapeditorController extends Controller {
 
 		echo '
 		<form method="post" action="./backindex.php?controller=chapeditor&action=edit">
-			<input type="text" name="title" value="' . $chapter->title() . '"/>
+			<input type="text" name="title" value="' . Str::secured($chapter->title()) . '"/>
 			<textarea class="tinymce" name="content">' . $chapter->content() . '</textarea>
 			<input type="hidden" name="id" value="' . $chapter->id() . '"/>
 			<button class="btn" type="submit">Modifier le chapitre</button>
@@ -77,10 +77,6 @@ class ChapeditorController extends Controller {
 		$manager->inBasket($db, $id);
 
 		header('Location: ./backindex.php?controller=edit');
-
-	}
-
-	public function display() {
 
 	}
 

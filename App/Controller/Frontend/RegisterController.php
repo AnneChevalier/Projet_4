@@ -4,6 +4,7 @@ use JFFram\Validator;
 use JFFram\Session;
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\UserManager;
 
 class RegisterController extends Controller {
@@ -42,7 +43,8 @@ class RegisterController extends Controller {
 			if ($validator->isValid()) {
 
 				$manager = new UserManager();
-				$manager->register($db, $_POST['pseudo'], $_POST['email'], $_POST['password']);
+				$pseudo = Str::secured($_POST['pseudo']);
+				$manager->register($db, $pseudo, $_POST['email'], $_POST['password']);
 
 				Session::getInstance()->setFlash('success', "Votre compte a bien été créé.");
 

@@ -37,12 +37,27 @@ class Str {
 
 	static function encrypt($data) {
 
-		return openssl_encrypt($data, "AES-128-ECB", "alaska");
+		$ciphering = "AES-128-CTR";
+		$encryption_key = "Alaska";
+		$options = 0;
+		$encryption_iv = '1234567891011121';
+		
+		$encryption = openssl_encrypt($data, $ciphering, $encryption_key, $options, $encryption_iv);
+
+		return $encryption;
 
 	}
 
 	static function decrypt($data) {
 
-		return openssl_decrypt($data, "AES-128-ECB", "alaska");
+		$ciphering = "AES-128-CTR";
+		$decryption_key = "Alaska";
+		$options = 0;
+		$decryption_iv = '1234567891011121';
+		
+		$decryption = openssl_decrypt($data, $ciphering, $decryption_key, $options, $decryption_iv);
+
+		return $decryption;
+
 	}
 }

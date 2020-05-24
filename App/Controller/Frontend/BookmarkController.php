@@ -2,6 +2,7 @@
 
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\ChapterManager;
 use Model\UserManager;
 use Model\BookmarkManager;
@@ -40,7 +41,8 @@ class BookmarkController extends Controller {
 
 		}
 
-		header('Location: ./index.php?controller=reading&id=' . $chapterId);
+		$hiddenChapterId = Str::encrypt($chapterId);
+		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 
 	}
 

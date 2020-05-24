@@ -2,6 +2,7 @@
 
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\BookManager;
 use Model\ChapterManager;
 
@@ -19,7 +20,7 @@ class BasketController extends Controller {
 			
 			echo
 				'<tr>
-					<td>' . $deletedBook->title() . ' crée le ' . $deletedBook->creationDate() . '</td>
+					<td>' . Str::secured($deletedBook->title()) . ' crée le ' . $deletedBook->creationDate() . '</td>
 					<td>
 						<form method="post" action="./backindex.php?controller=basket&action=restore">
 							<input type="hidden" name="entity" value="book"/> 
@@ -41,7 +42,7 @@ class BasketController extends Controller {
 			
 			echo
 				'<tr>
-					<td>' . $deletedChapter->title() . ' crée le ' . $deletedChapter->creationDate() . '</td>
+					<td>' . Str::secured($deletedChapter->title()) . ' crée le ' . $deletedChapter->creationDate() . '</td>
 					<td>
 						<form method="post" action="./backindex.php?controller=basket&action=restore">
 							<input type="hidden" name="entity" value="chapter"/>

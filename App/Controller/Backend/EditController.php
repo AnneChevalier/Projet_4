@@ -40,8 +40,7 @@ class EditController extends Controller {
 			
 		} else {
 
-			$session = Session::getInstance();
-			$session->setFlash('danger', "Il manque une information pour enregister le livre.");
+			Session::getInstance()->setFlash('danger', "Il manque une information pour enregister le livre.");
 			header('Location: ./backindex.php?controller=edit');
 		}
 
@@ -84,12 +83,12 @@ class EditController extends Controller {
 								<div>
 									<img class="bookcover" src="./Web/images/covers/' . $book->cover() . '"/>
 								</div>
-								<p>par : ' . $book->author() . '</p>
+								<p>par : ' . Str::secured($book->author()) . '</p>
 							</div>
 						</div>
 						<div class="col-md-10">
-							<h3 class="col-md-6">' . $book->title() .'</h3>
-							<p class="col-md-12">' . $book->resume() .'</p>
+							<h3 class="col-md-6">' . Str::secured($book->title()) .'</h3>
+							<p class="col-md-12">' . Str::secured($book->resume()) .'</p>
 
 							<div class="row vmargin">
 
@@ -140,7 +139,7 @@ class EditController extends Controller {
 
 								<tr>
 									<td>
-										<div>' . $chapter->title() . ' crée le ' . $chapter->creationDate() . '</div>
+										<div>' . Str::secured($chapter->title()) . ' crée le ' . $chapter->creationDate() . '</div>
 									</td>
 									<td>
 										<form method="post" action="./backindex.php?controller=display">
@@ -200,12 +199,12 @@ class EditController extends Controller {
 									</div>
 									<input type="file" name="cover" class="col-md-12 form-group" data-preview=".preview"/>
 								</div>
-								<input type="text" name="author" value="' . $book->author() . '" class="col-md-12 form-group" />
+								<input type="text" name="author" value="' . Str::secured($book->author()) . '" class="col-md-12 form-group" />
 							</div>
 							
 							<div class="col-md-10">
-								<input type="text" name="title" value="' . $book->title() .'" class="col-md-5 form-group" />
-								<textarea id="resume" name="resume" class="col-md-12 form-group">' . $book->resume() . '</textarea>
+								<input type="text" name="title" value="' . Str::secured($book->title()) .'" class="col-md-5 form-group" />
+								<textarea id="resume" name="resume" class="col-md-12 form-group">' . Str::secured($book->resume()) . '</textarea>
 								<input type="hidden" name="id" value="' . $book->id() . '"/>
 								<button type="submit" class="col-md-2 form-group btn">Modifier</button>
 							</div>

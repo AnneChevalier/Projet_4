@@ -20,7 +20,7 @@ class ReadingController extends Controller {
 			$chapter = $chapterManager->getChapter($db, $id);
 			$content = html_entity_decode($chapter->content());
 
-			echo "<h3>" . $chapter->title() . "</h3>" . $content;
+			echo "<h3>" . Str::secured($chapter->title()) . "</h3>" . $content;
 
 		}
 
@@ -39,7 +39,7 @@ class ReadingController extends Controller {
 			
 			echo'
 				<div class="row comment">
-					<p class="col-md-8">' . $comment->creationDate() . ' par ' . $userManager->getPseudo($db, $userId) . '</p>
+					<p class="col-md-8">' . $comment->creationDate() . ' par ' . Str::secured($userManager->getPseudo($db, $userId)) . '</p>
 					<div class="col-md-4 navbar-right">';
 
 					if (Session::getInstance()->read('auth')) {
@@ -79,8 +79,8 @@ class ReadingController extends Controller {
 					}
 						
 			echo 	'</div>
-					<h4 class="col-md-10">' . $comment->title() . '</h4>
-					<p class="col-md-12">' . $comment->content() . '</p>
+					<h4 class="col-md-10">' . Str::secured($comment->title()) . '</h4>
+					<p class="col-md-12">' . Str::secured($comment->content()) . '</p>
 				</div>';
 
 		}
@@ -110,7 +110,8 @@ class ReadingController extends Controller {
 			}
 		}
 
-		header('Location: ./index.php?controller=reading&id=' . $chapterId);
+		$hiddenChapterId = Str::encrypt($chapterId);
+		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 	}
 
 	public function report() {
@@ -124,7 +125,8 @@ class ReadingController extends Controller {
 			$commentManager->report($db, $commentId);
 		}
 
-		header('Location: ./index.php?controller=reading&id=' . $chapterId);
+		$hiddenChapterId = Str::encrypt($chapterId);
+		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 		
 	}
 
@@ -140,7 +142,8 @@ class ReadingController extends Controller {
 			$commentManager->delete($db, $commentId);
 		}
 
-		header('Location: ./index.php?controller=reading&id=' . $chapterId);
+		$hiddenChapterId = Str::encrypt($chapterId);
+		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 
 	}
 

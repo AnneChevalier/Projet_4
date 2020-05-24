@@ -40,7 +40,8 @@ class EditCommentController extends Controller {
 			}
 		}
 
-		header('Location: ./index.php?controller=reading&id=' . $chapterId);
+		$hiddenChapterId = Str::encrypt($chapterId);
+		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 
 	}
 

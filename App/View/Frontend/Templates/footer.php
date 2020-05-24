@@ -11,7 +11,7 @@
 					<a href=""><i class="fab fa-linkedin"></i></a>
 				</div>
 				<div class="col-md-4 vmargin">
-					<form method="post" action="./index.php?controller=home&action=contactForm">
+					<form method="post" action="./index.php?controller=contact&action=contactForm">
 						<h4 class="text-center">Contact</h4>
 						<div class="form-group">
 							<label for="pseudo">Votre Nom/Pseudo :</label>

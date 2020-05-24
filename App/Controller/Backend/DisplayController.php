@@ -2,6 +2,7 @@
 
 use JFFram\Controller;
 use JFFram\Manager;
+use JFFram\Str;
 use Model\ChapterManager;
 
 class DisplayController extends Controller {
@@ -16,7 +17,7 @@ class DisplayController extends Controller {
 			$chapter = $manager->getChapter($db, $id);
 			$content = html_entity_decode($chapter->content());
 
-			echo "<h3>" . $chapter->title() . "</h3>" . $content;
+			echo "<h3>" . Str::secured($chapter->title()) . "</h3>" . $content;
 
 		} else {
 
