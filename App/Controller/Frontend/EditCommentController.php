@@ -7,6 +7,7 @@ use Model\CommentManager;
 
 class EditCommentController extends Controller {
 
+	/* On récupère le commentaire */
 	static function getComment($id) {
 
 		$db = Manager::getDatabase();
@@ -18,6 +19,7 @@ class EditCommentController extends Controller {
 		}
 	}
 	
+	/* On enregistre la modification du commentaire */
 	public function edit() {
 
 		$db = Manager::getDatabase();

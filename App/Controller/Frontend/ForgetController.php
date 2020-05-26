@@ -7,6 +7,7 @@ use Model\UserManager;
 
 class ForgetController extends Controller {
 	
+	/* Envoi d'un mail en cas d'oublie de mot de passe */
 	public function forget() {
 
 		if (!empty($_POST) && !empty($_POST['email'])) {

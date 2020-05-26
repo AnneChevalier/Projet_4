@@ -8,6 +8,7 @@ use Model\UserManager;
 
 class ModerateController extends Controller {
 	
+	/* Affichage des commentaires signalés */
 	static function displayReportedComments() {
 
 		$db = Manager::getDatabase();
@@ -47,6 +48,7 @@ class ModerateController extends Controller {
 		
 	}
 
+	/* Affichage des nouveaux commentaires */
 	static function displayNewComments() {
 
 		$db = Manager::getDatabase();
@@ -86,6 +88,7 @@ class ModerateController extends Controller {
 		
 	}
 
+	/* Validation d'un commentaire */
 	public function validate() {
 
 		$db = Manager::getDatabase();
@@ -100,6 +103,7 @@ class ModerateController extends Controller {
 		header('Location: ./backindex.php?controller=moderate');
 	}
 
+	/* Suppression d'un commentaire */
 	public function delete() {
 		
 		$db = Manager::getDatabase();

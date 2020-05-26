@@ -9,6 +9,7 @@ use JFFram\Str;
 
 class ResetController extends Controller {
 	
+	/* vérification du token pour réinitialiser le mot de passe après un oubli */
 	public function reset() {
 
 		if(isset($_GET['id']) && isset($_GET['token'])) {

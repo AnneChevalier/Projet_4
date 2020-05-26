@@ -7,7 +7,7 @@ use Model\ChapterManager;
 
 class ChapeditorController extends Controller {
 
-	
+	/* On ajoute le chapitre à la BDD */
 	public function save() {
 		
 		if (!empty($_POST)) {
@@ -28,6 +28,7 @@ class ChapeditorController extends Controller {
 		}
 	}
 
+	/* On affiche le formulaire pré-rempli */
 	static function editChapter($chapid) {
 
 		$db = Manager::getDatabase();
@@ -48,6 +49,7 @@ class ChapeditorController extends Controller {
 
 	}
 
+	/* On enregistre les modifications */
 	public function edit() {
 
 		$db = Manager::getDatabase();
@@ -68,6 +70,7 @@ class ChapeditorController extends Controller {
 		}
 	}
 
+	/* On donne le statut en corbeille */
 	public function basket() {
 
 		$db = Manager::getDatabase();
@@ -80,6 +83,7 @@ class ChapeditorController extends Controller {
 
 	}
 
+	/* On change le statut en ligne ou hors ligne à fonction de son état actuel */
 	public function online() {
 
 		$db = Manager::getDatabase();

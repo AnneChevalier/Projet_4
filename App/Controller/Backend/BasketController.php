@@ -7,7 +7,8 @@ use Model\BookManager;
 use Model\ChapterManager;
 
 class BasketController extends Controller {
-	
+
+	/* On récupère les éléments dont le statut est en corbeille */
 	static function getlist() {
 
 		$db = Manager::getDatabase();
@@ -16,6 +17,7 @@ class BasketController extends Controller {
 		$chapterManager = new chapterManager();
 		$deletedChapters = $chapterManager->getDeletedChapters($db);
 
+		/* Pour chaque livre de la corbeille on affiche un bouton restaurer et supprimer */
 		foreach ($deletedBooks as $deletedBook) {
 			
 			echo
@@ -38,6 +40,7 @@ class BasketController extends Controller {
 				</div>';
 		}
 
+		/* pour chaque chapitre de la corbeille on affiche un bouton restaurer et supprimer */
 		foreach ($deletedChapters as $deletedChapter) {
 			
 			echo

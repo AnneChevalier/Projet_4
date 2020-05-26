@@ -8,6 +8,7 @@ use JFFram\Controller;
 
 class LoginController extends Controller {
 
+	/* Connection à la partie admin */
 	public function login() {
 
 		$db = Manager::getDatabase();
@@ -32,13 +33,9 @@ class LoginController extends Controller {
 				header('Location: ./backindex.php');
 
 			}
-
 			
 		}
 
 	}
 	
-
 }
-
- ?>

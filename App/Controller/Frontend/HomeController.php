@@ -9,6 +9,7 @@ use Model\BookmarkManager;
 
 class HomeController extends Controller {
 
+	/* Affiche le détail du dernier livre publié */
 	static function lastBookDetails() {
 
 		$db = Manager::getDatabase();
@@ -40,7 +41,8 @@ class HomeController extends Controller {
 						</p>
 					</div>
 					<div class="col-md-12 collapse" id="chapters' . $book->id() . '">
-						<h5>Chapitre(s) Disponible(s)</h5>';
+						<h5>Chapitre(s) Disponible(s)</h5>
+						<ol>';
 
 						foreach ($chapters as $chapter) {
 
@@ -48,27 +50,27 @@ class HomeController extends Controller {
 							$hiddenChapterId = Str::encrypt($chapterId);
 
 						echo '
-						<ol>	
 							<li>
 								<div class="row">
 									<div class="col-md-4">' . Str::secured($chapter->title()) . ' publié le ' . $chapter->publicationDate() . '</div>
 									
 									<form method="post" action="./index.php?controller=reading&id=' . $hiddenChapterId . '" class="col-md-2">
-										<button type="submit" class="btn">Lire</button>
+										<button type="submit" class="btn vmargin">Lire</button>
 									</form>
 								</div>
-							</li>
-						</ol>';
+							</li>';
 						}
 
 					echo 
 
-					'</div>
+						'</ol>
+					</div>
 				</div>
 			';
 		}
 	}
 
+	/* Affichage du détail des livres autre que le dernier */
 	static function booksDetails() {
 
 		$db = Manager::getDatabase();
@@ -138,6 +140,7 @@ class HomeController extends Controller {
 
 	}
 
+	/* Affichage de la liste des marque-pages de l'utilisateur*/
 	static function listBookmarks($userId) {
 
 		$db = Manager::getDatabase();

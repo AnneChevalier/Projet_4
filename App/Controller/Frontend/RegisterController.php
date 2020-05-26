@@ -9,6 +9,7 @@ use Model\UserManager;
 
 class RegisterController extends Controller {
 	
+	/* vérifications et ajout d'un nouvel utilisateur */
 	public function register() {
 
 
@@ -28,7 +29,7 @@ class RegisterController extends Controller {
 
 			}
 
-			$validator->isEmail('email',"Votre email n'est pas valide.");
+			$validator->isEmail('email', "Votre email n'est pas valide.");
 
 			if ($validator->isValid()) {
 				
@@ -36,7 +37,7 @@ class RegisterController extends Controller {
 
 			}
 
-			$validator->isConfirmed('password', 'confpassword',"Votre mot de passe n'est pas valide.");
+			$validator->isConfirmed('password', 'confpassword', "Votre mot de passe n'est pas valide.");
 
 
 
@@ -54,7 +55,13 @@ class RegisterController extends Controller {
 			} else {
 
 				$errors = $validator->getErrors();
+				
+				foreach ($errors as $error) {
 
+					Session::getInstance()->setFlash('danger', $error);
+					header("Location: ./index.php?controller=register");
+				}
+				
 			}
 
 		}

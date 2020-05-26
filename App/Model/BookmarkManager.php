@@ -49,6 +49,7 @@ class BookmarkManager extends Manager {
 
 	}
 
+	/* Vérifie si l'utilisateur a déjà un marque page dans ce livre */
 	public function bookmarkInBook($db, $userId, $bookId) {
 
 		return $db->query('SELECT id FROM bookmarks WHERE userId = ? AND bookId = ?', [$userId, $bookId])->fetch();

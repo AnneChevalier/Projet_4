@@ -9,6 +9,7 @@ use Model\BookmarkManager;
 
 class BookmarkController extends Controller {
 	
+	/* On enregistre le marque-page */
 	public function mark() {
 
 		if (!empty($_POST['userId'])) {

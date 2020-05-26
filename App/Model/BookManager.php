@@ -137,6 +137,7 @@ class BookManager extends Manager {
 
 	}
 
+	/* Suppression de tous les livres en corbeille */
 	public function deleteAll($db) {
 
 		$req = $db->query("SELECT id FROM books WHERE status = ?", ['basket']);
@@ -176,6 +177,7 @@ class BookManager extends Manager {
 		$db->query("DELETE FROM books WHERE status = ?", ['basket']);
 	}
 
+	/* Récupère l'id du dernier livre en ligne */
 	public function getLastBookId($db) {
 
 		$req = $db->query("SELECT MAX(id) FROM books WHERE status = 'online'")->fetch(\PDO::FETCH_ASSOC);

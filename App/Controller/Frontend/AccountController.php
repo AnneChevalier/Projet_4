@@ -49,22 +49,6 @@ class AccountController extends Controller {
 	
 	}
 
-	public function restrict() {
-
-		$session = Session::getInstance();
-
-		if (!$session->read('auth')) {
-			
-			$session->setFlash('danger', 'Vous n\'avez pas accès à cette page.');
-
-			header('Location: ./index.php?controller=login');
-
-			exit();
-
-		}
-
-	}
-
 	public function updatePseudo() {
 
 		$session = Session::getInstance();

@@ -7,6 +7,7 @@ use Model\ChapterManager;
 
 class DisplayController extends Controller {
 	
+	/* Affiche le chapitre */
 	static function displayChapter($id) {
 
 		$db = Manager::getDatabase();

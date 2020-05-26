@@ -10,6 +10,7 @@ use Model\CommentManager;
 
 class ReadingController extends Controller {
 	
+	/* Affichage du chapitre */
 	static function displayChapter($id) {
 
 		$db = Manager::getDatabase();
@@ -26,6 +27,7 @@ class ReadingController extends Controller {
 
 	}
 
+	/* Affichage des commentaires du chapitre */
 	static function displayComments($chapterId) {
 
 		$db = Manager::getDatabase();
@@ -87,6 +89,7 @@ class ReadingController extends Controller {
 
 	}
 
+	/* On enregistre un nouveau commentaire */
 	public function addComment() {
 
 		$db = Manager::getDatabase();
@@ -125,7 +128,7 @@ class ReadingController extends Controller {
 			$commentManager->report($db, $commentId);
 		}
 
-		$hiddenChapterId = Str::encrypt($chapterId);
+		$hiddenChapterId = Str::encrypt($_POST['chapterId']);
 		header('Location: ./index.php?controller=reading&id=' . $hiddenChapterId);
 		
 	}
@@ -147,6 +150,7 @@ class ReadingController extends Controller {
 
 	}
 
+	/* vérification que la chapitre soit bien en ligne */
 	static function check($id) {
 
 		$db = Manager::getDatabase();

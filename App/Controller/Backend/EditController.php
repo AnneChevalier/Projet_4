@@ -10,6 +10,7 @@ use Model\ChapterManager;
 
 class EditController extends Controller {
 
+	/* Ajout d'un nouveau livre en BDD */
 	public function createbook() {
 		
 		if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['resume'])) {
@@ -46,6 +47,7 @@ class EditController extends Controller {
 
 	}
 
+	/* Affiche la couverture des livres qui ne sont pas en corbeille */
 	static function showbookcover() {
 
 		$db = Manager::getDatabase();
@@ -64,6 +66,7 @@ class EditController extends Controller {
 
 	}
 
+	/* Affichage du détail des livres */
 	static function showbookdetails() {
 
 		$db = Manager::getDatabase();
@@ -133,6 +136,7 @@ class EditController extends Controller {
 						<div class="row">
 							<table>';
 
+					/* Affichage de la liste des chapitres avec les boutons des différentes fonctionnalités */
 					foreach ($chapters as $chapter) {
 
 						echo '
@@ -184,6 +188,7 @@ class EditController extends Controller {
 								</tr>';
 					}
 
+					/* Affichage de formulaire de modification d'un livre */
 					echo '
 							</table>
 						</div>
@@ -214,6 +219,7 @@ class EditController extends Controller {
 
 				;
 
+				/* Script pour l'affichage du détail du livre (pour ouvrir la partie correspondant à l'id) */
 				echo 
 					'<script>
 
@@ -240,6 +246,7 @@ class EditController extends Controller {
 		
 	}
 
+	/* Enregistrement des modifications d'un livre */
 	public function editbook() {
 
 		$db = Manager::getDatabase();
@@ -283,6 +290,7 @@ class EditController extends Controller {
 
 	}
 
+	/* Changement de statut en fonction de l'actuel */
 	public function online() {
 
 		$db = Manager::getDatabase();
@@ -294,6 +302,7 @@ class EditController extends Controller {
 		header('Location: ./backindex.php?controller=edit');
 	}
 
+	/* Changement du statut en corbeille */
 	public function basket() {
 
 		$db = Manager::getDatabase();

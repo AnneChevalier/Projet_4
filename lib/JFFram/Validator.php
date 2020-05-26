@@ -61,7 +61,7 @@ class Validator {
 
 		if (!filter_var($this->getField($field), FILTER_VALIDATE_EMAIL)) {
 			
-			$this->$errors[$field] = $error_message;
+			$this->errors[$field] = $error_message;
 
 		}
 
@@ -73,7 +73,7 @@ class Validator {
 
 		if (empty($value) || $value !== $this->getField($fieldConf)) {
 			
-			$this->$errors[$field] = $error_message;
+			$this->errors[$field] = $error_message;
 
 		}
 	}

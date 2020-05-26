@@ -95,8 +95,6 @@ class Rooter {
 
 	private function handleError(Exception $exception) {
 
-
-
 		$view = new View('show', 'error');
 
 		$view->generate(array('ErrorMsg' => $exception->getMessage()));

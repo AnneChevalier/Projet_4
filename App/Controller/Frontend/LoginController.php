@@ -7,6 +7,7 @@ use JFFram\Manager;
 
 class LoginController extends Controller {
 	
+	/* Connection à la partie Front */
 	public function login() {
 
 		$db = Manager::getDatabase();
@@ -33,7 +34,7 @@ class LoginController extends Controller {
 		}
 	}
 
-
+	/* A t-on un utilisateur d'authentifié dans la session ? */
 	public function user() {
 
 		if (!$this->session->read('auth')) {

@@ -46,8 +46,6 @@ class Autoloader {
 
 			echo "Le namespace " . $parts[0] . " n'est pas défini.";
 		}
-		
-    	
 
 	}
 
